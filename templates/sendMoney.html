@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block main %}
+<div class="container h-100 vh-100">
+<form action="/sendMoney" method="post">
+    <div lass="form-group">
+      <label for="exampleInputEmail1">How much money do you want to transfer ?</label>
+      <input name="money" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="$$$">
+    </div>
+
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+              <div class="card mb-5" style="border-radius: 15px;">
+                <div class="card-body p-4">
+                  <h3 class="mb-3">Sender </h3>
+                  <p class="small mb-0"><i class="far fa-star fa-lg"></i> <span class="mx-2">|</span> Name: 
+                    <strong>{{currentUser.username}}</strong> Balance:  {{currentUser.balance}}</p>
+                </div>
+              </div>
+                <div class="card-body p-4">
+                  <h3 class="mb-3">Receiver</h3>
+                  <select name="user_id" class="form-select" aria-label="Disabled select example">
+                    {% for user in users %}
+                    {% if user._id == selectedUser._id %}
+                    <option value="{{user._id}}" selected>{{user.username}}</option>
+                    {% elif currentUser._id != user._id %}
+                    <option value="{{user._id}}">{{user.username}}</option>
+                    {% endif %}
+                    {% endfor %}
+                  </select>
+                </div>
+            </div>
+          </div>
+        </div>
+     
+    <button type="submit" class="btn btn-primary">Submit transaction</button>
+  </form>
+
+</div>
+{% endblock %}

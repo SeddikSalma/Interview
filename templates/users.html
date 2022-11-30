@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">More</th>
+      </tr>
+    </thead>
+    <tbody>
+        
+	{% for user in users %}
+    {% if user.email != session['email'] %}
+        <tr>
+        <td>{{user['username']}}</td>
+        <td>{{user["email"]}}</td>
+        <td><a href="/showProfile/{{user['_id']}}"><button type="button" class="btn btn-primary btn-lg">Visit profile</button></a></td>
+      </tr>
+    {% endif %}
+    {% endfor %}
+    </tbody>
+  </table>
+
+  {% endblock %}
